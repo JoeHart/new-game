@@ -1,0 +1,19 @@
+{
+  "name": "new-game",
+  "version": "0.0.1",
+  "description": "Code for all the games in my new comedy show",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeHart/new-game.git"
+  },
+  "author": "joehart42@outlook.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeHart/new-game/issues"
+  },
+  "homepage": "https://github.com/JoeHart/new-game#readme"
+}

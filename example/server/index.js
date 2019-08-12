@@ -17,6 +17,7 @@ let number = 0;
 
 io.on("connection", function(socket) {
   console.log("a user connected");
+  socket.emit("increment", number);
   socket.on("disconnect", function() {
     console.log("user disconnected");
   });

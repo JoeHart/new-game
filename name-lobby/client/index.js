@@ -2,8 +2,9 @@ import io from "socket.io-client";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import useSocket from "use-socket.io-client";
-import Login from "./components/login";
+import Login from "./components/Login";
 import WaitingRoom from "./components/WaitingRoom";
+import Jump from "./components/WaitingRoom";
 
 const SOCKET_URL = "http://192.168.0.7:3000";
 
@@ -15,6 +16,11 @@ const Main = () => {
 
   if (!username) {
     return <Login socket={socket} setUsername={setUsername} />;
+  }
+
+  if (currentGame === "jump") {
+    // return jump components
+    
   }
 
   return <WaitingRoom socket={socket} username={username} />;

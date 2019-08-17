@@ -22,6 +22,9 @@ public class AudioInput : MonoBehaviour
     public float unitVolume2;
     public float smoothUnitVolume;
     public float unitPitch;
+    public float unitPitch1;
+    public float unitPitch2;
+    public float smoothUnitPitch;
 
     private const int QSamples = 1024;
     private const float RefValue = 0.1f;
@@ -45,15 +48,19 @@ public class AudioInput : MonoBehaviour
         while (!(Microphone.GetPosition(null) > 0)) { }
         _audio.Play();
         maxDb = -1000;
+        highPitch = 1000;
         minDb = 0;
         unitVolume1 = 0;
+        unitPitch = 0;
+        unitPitch1 = 0;
+        unitPitch2 = 0;
         unitVolume2 = 0;
+        smoothUnitPitch = 0;
     }
 
     void Update()
     {
         AnalyzeSound();
-        AnalyzeUnits();
         if (dbVal > maxDb)
         {
             maxDb = dbVal;
@@ -68,6 +75,21 @@ public class AudioInput : MonoBehaviour
             unitVolume = 1;
         }
 
+        if (pitchVal != 0)
+        {
+            if (pitchVal < highPitch)
+            {
+                highPitch = pitchVal;
+            }
+
+            if (pitchVal > lowPitch)
+            {
+                lowPitch = pitchVal;
+            }
+        }
+        AnalyzeUnits();
+
+
         // Debug.Log("RMS: " + rmsVal.ToString("F2"));
         // Debug.Log(dbVal.ToString("F1") + " dB");
         // Debug.Log(pitchVal.ToString("F0") + " Hz");
@@ -77,14 +99,34 @@ public class AudioInput : MonoBehaviour
     {
         smoothUnitVolume = Mathf.Lerp(unitVolume1, unitVolume2, (0.002f * Time.time));
         unitVolume1 = smoothUnitVolume;
+        Debug.Log("unitPitch1: " + unitPitch1);
+        Debug.Log("unitPitch2: " + unitPitch2);
+        Debug.Log("smoothUnitPitch: " + smoothUnitPitch);
+        smoothUnitPitch = Mathf.Lerp(unitPitch1, unitPitch2, (0.002f * Time.time));
+        unitPitch1 = smoothUnitPitch;
     }
 
     void AnalyzeUnits()
     {
         float dbOverBase = dbVal - baseDb;
-        Debug.Log("dbOverbase: " + dbOverBase);
         unitVolume = dbOverBase / (maxDb - baseDb);
         unitVolume2 = unitVolume;
+        if (pitchVal != 0)
+        {
+            float pitchOverBase = pitchVal - highPitch;
+            Debug.Log("pitchOverBase: " + pitchOverBase);
+            Debug.Log("lowPitch: " + lowPitch);
+            Debug.Log("highPitch: " + highPitch);
+            float diff = (lowPitch - highPitch);
+            Debug.Log("(lowPitch - highPitch): " + diff);
+            if (diff != 0)
+            {
+
+                unitPitch = (pitchOverBase / (lowPitch - highPitch));
+            }
+            Debug.Log("NEW PITCH: " + unitPitch);
+        }
+        unitPitch2 = unitPitch;
     }
 
     void AnalyzeSound()

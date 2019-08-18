@@ -36,6 +36,13 @@ public class AudioInput : MonoBehaviour
 
     private AudioSource _audio;
 
+    public void ResetSmooth()
+    {
+        smoothUnitVolume = 0;
+        unitVolume1 = 0;
+        unitVolume2 = 0;
+    }
+
     void Start()
     {
         _samples = new float[QSamples];
@@ -90,18 +97,12 @@ public class AudioInput : MonoBehaviour
         AnalyzeUnits();
 
 
-        // Debug.Log("RMS: " + rmsVal.ToString("F2"));
-        // Debug.Log(dbVal.ToString("F1") + " dB");
-        // Debug.Log(pitchVal.ToString("F0") + " Hz");
     }
 
     void LateUpdate()
     {
         smoothUnitVolume = Mathf.Lerp(unitVolume1, unitVolume2, (0.002f * Time.time));
         unitVolume1 = smoothUnitVolume;
-        Debug.Log("unitPitch1: " + unitPitch1);
-        Debug.Log("unitPitch2: " + unitPitch2);
-        Debug.Log("smoothUnitPitch: " + smoothUnitPitch);
         smoothUnitPitch = Mathf.Lerp(unitPitch1, unitPitch2, (0.002f * Time.time));
         unitPitch1 = smoothUnitPitch;
     }
@@ -114,17 +115,12 @@ public class AudioInput : MonoBehaviour
         if (pitchVal != 0)
         {
             float pitchOverBase = pitchVal - highPitch;
-            Debug.Log("pitchOverBase: " + pitchOverBase);
-            Debug.Log("lowPitch: " + lowPitch);
-            Debug.Log("highPitch: " + highPitch);
             float diff = (lowPitch - highPitch);
-            Debug.Log("(lowPitch - highPitch): " + diff);
             if (diff != 0)
             {
 
                 unitPitch = (pitchOverBase / (lowPitch - highPitch));
             }
-            Debug.Log("NEW PITCH: " + unitPitch);
         }
         unitPitch2 = unitPitch;
     }

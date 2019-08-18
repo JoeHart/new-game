@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    public float speed = 0.5f;
-
+    public AutoRunnerGameLogic gameLogic;
     void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x - speed, transform.position.y, transform.position.z);
-        if (transform.position.x < -15)
+        if (gameLogic.started)
         {
-            Destroy(gameObject);
+            transform.position = new Vector3(transform.position.x - (gameLogic.obstacleSpeed * Time.deltaTime), transform.position.y, transform.position.z);
+            if (transform.position.x < -15)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

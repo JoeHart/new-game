@@ -8,13 +8,12 @@ public class RunnerControls : MonoBehaviour
     public float jumpSize = 2.0f;
     private bool _jumping = false;
     private bool _jumped = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("space"))

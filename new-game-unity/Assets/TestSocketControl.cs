@@ -14,6 +14,7 @@ public class TestSocketControl : MonoBehaviour
     private float _lastFired = 0.0f;
     private bool _lastTouchedLeft = false;
     private bool _firstTouch = true;
+    public AlienController controller;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +27,14 @@ public class TestSocketControl : MonoBehaviour
         float x = transform.position.x;
         float y = transform.position.y;
         float z = transform.position.z;
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || _leftPress == true)
+        if (_leftPress == true)
         {
-            _rigidbody.velocity = new Vector3(-1f, 0, 0);
+            _rigidbody.velocity = new Vector3(-controller.alienSpeed, 0, 0);
             _leftPress = false;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || _rightPress == true)
+        if (_rightPress == true)
         {
-            _rigidbody.velocity = new Vector3(1f, 0, 0);
+            _rigidbody.velocity = new Vector3(controller.alienSpeed, 0, 0);
             _rightPress = false;
         }
 
@@ -41,8 +42,9 @@ public class TestSocketControl : MonoBehaviour
         {
             if (Time.time > (_lastFired + fireInterval))
             {
-                Vector3 bulletPosition = new Vector3(x, y - 0.3f, z);
-                Instantiate(bulletPrefab, bulletPosition, Quaternion.Euler(0, 0, 0));
+                Vector3 bulletPosition = new Vector3(x, y - 0.4f, z);
+                GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.Euler(0, 0, 0));
+                bullet.GetComponent<BulletLogic>().Go(true);
                 _lastFired = Time.time;
             }
 
@@ -100,6 +102,7 @@ public class TestSocketControl : MonoBehaviour
         float y = transform.position.y - 1.2f;
         float z = transform.position.z;
         Vector3 newPosition = new Vector3(x, y, z);
+        controller.SpeedUpAliens();
         transform.position = newPosition;
         _rigidbody.isKinematic = false;
     }

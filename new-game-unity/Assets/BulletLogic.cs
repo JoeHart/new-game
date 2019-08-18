@@ -5,10 +5,17 @@ using UnityEngine;
 public class BulletLogic : MonoBehaviour
 {
     public float speed = 1.0f;
-    // Start is called before the first frame update
-    void Start()
+
+    public void Go(bool goDown)
     {
-        GetComponent<Rigidbody>().velocity = Vector3.down * speed;
+        if (goDown == true)
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.down * speed;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.up * speed;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -16,7 +23,7 @@ public class BulletLogic : MonoBehaviour
         switch (collision.collider.name)
         {
             case "Player":
-                Destroy(collision.collider);
+                collision.collider.GetComponent<SpaceInvaderPlayerControls>().Die();
                 break;
             case "Cube(Clone)":
                 Debug.Log("hit alien");

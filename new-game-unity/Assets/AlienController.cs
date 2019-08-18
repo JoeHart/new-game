@@ -11,6 +11,7 @@ public class AlienController : MonoBehaviour
     public GameObject alienPrefab;
     public float gapBetweenAliens = 2.0f;
     public float verticalGapBetweenAliens = 2.0f;
+    public float alienSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,11 @@ public class AlienController : MonoBehaviour
 
             }
         }
+    }
+
+    public void SpeedUpAliens()
+    {
+        alienSpeed = alienSpeed * 1.1f;
     }
 
     // Update is called once per frame
@@ -77,6 +83,7 @@ public class AlienController : MonoBehaviour
 
         GameObject alien = Instantiate(alienPrefab, position, Quaternion.Euler(0, 0, 180));
         alien.GetComponent<TestSocketControl>().startPosition = position;
+        alien.GetComponent<TestSocketControl>().controller = this;
         aliens.Add(id, alien);
     }
 

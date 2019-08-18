@@ -129,6 +129,7 @@ dist/
 /new-game-unity/[Bb]uilds/
 /new-game-unity/[Ll]ogs/
 /new-game-unity/[Mm]emoryCaptures/
+/new-game-unity/[Aa]ssets/SocketIO/
 
 # Never ignore Asset meta data
 !/new-game-unity/[Aa]ssets/**/*.meta

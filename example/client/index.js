@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const socket = io("http://192.168.0.7:3000");
+const socket = io("ws://192.168.0.7:3000");
 const button = document.getElementById("increment");
 const display = document.getElementById("number");
 const handleButton = () => {

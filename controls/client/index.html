@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NEW GAME</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font: 32px Helvetica, Arial;
+        height: 100%;
+        touch-action: manipulation;
+      }
+      button {
+        font: 40px Helvetica, Arial;
+        width: 100%;
+      }
+      .buttonContainer {
+        display: flex;
+        flex-direction: row;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>New Game</h1>
+    <div class="buttonContainer">
+      <button id="left">Left</button>
+      <button id="right">Right</button>
+    </div>
+    <div class="buttonContainer">
+      <button id="fire">Fire</button>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -39079,7 +39079,7 @@ const useSocket = (...args) => {
 
 var _default = useSocket;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","socket.io-client":"node_modules/socket.io-client/lib/index.js"}],"components/login.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","socket.io-client":"node_modules/socket.io-client/lib/index.js"}],"components/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39202,7 +39202,7 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _useSocket3 = _interopRequireDefault(require("use-socket.io-client"));
 
-var _login = _interopRequireDefault(require("./components/login"));
+var _Login = _interopRequireDefault(require("./components/Login"));
 
 var _WaitingRoom = _interopRequireDefault(require("./components/WaitingRoom"));
 
@@ -39238,10 +39238,13 @@ var Main = function Main() {
       setCurrentGame = _useState4[1];
 
   if (!username) {
-    return _react.default.createElement(_login.default, {
+    return _react.default.createElement(_Login.default, {
       socket: socket,
       setUsername: setUsername
     });
+  }
+
+  if (currentGame === "jump") {// return jump components
   }
 
   return _react.default.createElement(_WaitingRoom.default, {
@@ -39253,7 +39256,7 @@ var Main = function Main() {
 var mountNode = document.getElementById("app");
 
 _reactDom.default.render(_react.default.createElement(Main, null), mountNode);
-},{"socket.io-client":"node_modules/socket.io-client/lib/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","use-socket.io-client":"node_modules/use-socket.io-client/src/index.js","./components/login":"components/login.js","./components/WaitingRoom":"components/WaitingRoom.js"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"socket.io-client":"node_modules/socket.io-client/lib/index.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","use-socket.io-client":"node_modules/use-socket.io-client/src/index.js","./components/Login":"components/Login.js","./components/WaitingRoom":"components/WaitingRoom.js"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -39281,7 +39284,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53657" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63790" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

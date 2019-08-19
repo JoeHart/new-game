@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6628228058458365889}
   - component: {fileID: 6628228058458365918}
   - component: {fileID: 6628228058458365891}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  enableFriendlyFire: 0
+  collider: {fileID: 6628228058470458996}
 --- !u!82 &6628228058458365891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ GameObject:
   - component: {fileID: 6628228058470458998}
   - component: {fileID: 6628228058470458999}
   - component: {fileID: 6628228058470458996}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

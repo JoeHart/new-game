@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1784684655510465618}
   - component: {fileID: 1784684655510465645}
   - component: {fileID: -1518476951194849212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,10 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 6628228058458365919, guid: 0158a6b2b8de54ac4bb47342f2866f47,
     type: 3}
+  bulletPlayerPrefab: {fileID: 6628228058458365919, guid: e1284685656bd43e188572b5f6b3ea5e,
+    type: 3}
   fireInterval: 2
+  controller: {fileID: 0}
 --- !u!54 &-1518476951194849212
 Rigidbody:
   m_ObjectHideFlags: 0

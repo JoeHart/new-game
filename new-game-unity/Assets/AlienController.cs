@@ -9,21 +9,25 @@ public class AlienController : MonoBehaviour
     Dictionary<string, GameObject> aliens;
     List<Vector3> positions;
     public GameObject alienPrefab;
+    public bool allowFriendlyFire = false;
     public float gapBetweenAliens = 2.0f;
     public float verticalGapBetweenAliens = 2.0f;
     public float alienSpeed = 1.0f;
+
+    public bool started = false;
     // Start is called before the first frame update
     void Start()
     {
         aliens = new Dictionary<string, GameObject>();
         positions = new List<Vector3>();
-        for (int x = 0; x < 11; x++)
+        for (int y = 0; y < 9; y++)
         {
-            for (int y = 0; y < 5; y++)
+            for (int x = 0; x < 11; x++)
             {
                 Vector3 position = new Vector3(x * gapBetweenAliens, -y * verticalGapBetweenAliens, 0);
                 positions.Add(position);
                 // GameObject alien = Instantiate(alienPrefab, position, Quaternion.Euler(0, 0, 180));
+                // alien.GetComponent<TestSocketControl>().controller = this;
 
             }
         }
@@ -37,7 +41,10 @@ public class AlienController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            started = true;
+        }
     }
 
     public void Right(string id)

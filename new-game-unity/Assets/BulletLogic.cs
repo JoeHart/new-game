@@ -26,12 +26,10 @@ public class BulletLogic : MonoBehaviour
                 collision.collider.GetComponent<SpaceInvaderPlayerControls>().Die();
                 break;
             case "Cube(Clone)":
-                Debug.Log("hit alien");
                 Destroy(collision.collider.gameObject);
                 break;
 
         }
-
         Destroy(gameObject);
     }
 }

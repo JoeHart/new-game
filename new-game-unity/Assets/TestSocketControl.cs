@@ -10,6 +10,7 @@ public class TestSocketControl : MonoBehaviour
     public Vector3 startPosition;
     private Rigidbody _rigidbody;
     public GameObject bulletPrefab;
+    public GameObject bulletPlayerPrefab;
     public float fireInterval = 2.0f;
     private float _lastFired = 0.0f;
     private bool _lastTouchedLeft = false;
@@ -24,33 +25,47 @@ public class TestSocketControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = transform.position.x;
-        float y = transform.position.y;
-        float z = transform.position.z;
-        if (_leftPress == true)
+        if (controller.started)
         {
-            _rigidbody.velocity = new Vector3(-controller.alienSpeed, 0, 0);
-            _leftPress = false;
-        }
-        if (_rightPress == true)
-        {
-            _rigidbody.velocity = new Vector3(controller.alienSpeed, 0, 0);
-            _rightPress = false;
-        }
 
-        if (_firePress == true)
-        {
-            if (Time.time > (_lastFired + fireInterval))
+
+            float x = transform.position.x;
+            float y = transform.position.y;
+            float z = transform.position.z;
+            if (_leftPress == true)
             {
-                Vector3 bulletPosition = new Vector3(x, y - 0.4f, z);
-                GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.Euler(0, 0, 0));
-                bullet.GetComponent<BulletLogic>().Go(true);
-                _lastFired = Time.time;
+                _rigidbody.velocity = new Vector3(-controller.alienSpeed, 0, 0);
+                _leftPress = false;
+            }
+            if (_rightPress == true)
+            {
+                _rigidbody.velocity = new Vector3(controller.alienSpeed, 0, 0);
+                _rightPress = false;
             }
 
-            _firePress = false;
-        }
+            if (_firePress == true || Input.GetButtonDown("Fire1"))
+            {
+                if (Time.time > (_lastFired + fireInterval))
+                {
+                    Vector3 bulletPosition = new Vector3(x, y - 0.4f, z);
+                    if (controller.allowFriendlyFire)
+                    {
+                        GameObject bullet = Instantiate(bulletPlayerPrefab, bulletPosition, Quaternion.Euler(0, 0, 0));
+                        bullet.GetComponent<BulletLogic>().Go(true);
 
+                    }
+                    else
+                    {
+                        GameObject bullet = Instantiate(bulletPrefab, bulletPosition, Quaternion.Euler(0, 0, 0));
+                        bullet.GetComponent<BulletLogic>().Go(true);
+
+                    }
+                    _lastFired = Time.time;
+                }
+
+                _firePress = false;
+            }
+        }
     }
 
     public void Right()
@@ -78,6 +93,8 @@ public class TestSocketControl : MonoBehaviour
                     Advance();
                     _firstTouch = false;
                     _lastTouchedLeft = true;
+                    _rigidbody.velocity = new Vector3(controller.alienSpeed, 0, 0);
+
                 }
                 break;
             case "RightWall":
@@ -87,6 +104,8 @@ public class TestSocketControl : MonoBehaviour
                     Advance();
                     _firstTouch = false;
                     _lastTouchedLeft = false;
+                    _rigidbody.velocity = new Vector3(-controller.alienSpeed, 0, 0);
+
 
                 }
                 break;

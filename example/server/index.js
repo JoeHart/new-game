@@ -17,15 +17,23 @@ let number = 0;
 
 io.on("connection", function(socket) {
   console.log("a user connected");
-  socket.emit("increment", number);
+
   socket.on("disconnect", function() {
     console.log("user disconnected");
   });
+
   socket.on("increment", function() {
     number++;
     console.log(number);
-    io.emit("increment", number);
+    io.emit("updateCount", number);
   });
+
+  socket.on("deploy", function() {
+    number = number * 2;
+    io.emit("updateCount", number);
+  });
+
+  socket.emit("updateCount", number);
 });
 
 http.listen(3000, function() {

@@ -5,9 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "start": "parcel build index.html && http-server dist"
   },
   "dependencies": {
+    "http-server": "^0.11.1",
+    "parcel": "^1.12.4",
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {

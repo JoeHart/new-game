@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 // const socket = io("ws://192.168.0.184:3000");
-const socket = io("ws://172.20.10.3:3000");
+const socket = io("ws://10.151.98.19:8080");
 const leftButton = document.getElementById("left");
 const rightButton = document.getElementById("right");
 const fireButton = document.getElementById("fire");

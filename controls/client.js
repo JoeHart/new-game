@@ -1,6 +1,6 @@
 const io = require("socket.io-client");
 const host = process.env.HOST || "157.245.31.200";
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 const address = `ws://${host}:${port}`
 try {
 

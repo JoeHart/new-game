@@ -2,6 +2,15 @@ const io = require("socket.io-client");
 const host = process.env.HOST || "play.joehart.fun";
 const port = process.env.PORT || 3000;
 const address = `wss://${host}:${port}`;
+
+const handleSubmitForm = (e) => {
+  e.preventDefault();
+  socket.emit("spawn", { id: socket.id, name: e.target[0].value });
+  return false;
+};
+
+window.handleSubmitForm = handleSubmitForm
+
 try {
 
   console.log("connecting to " + address);

@@ -63,6 +63,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
         justify-items: center;
+        align-items: center;
       }
 
       #up {
@@ -81,16 +82,24 @@
         grid-column: 2;
         grid-row: 3;
       }
+
+      #ghost {
+        grid-column: 2;
+        grid-row: 2;
+        width: 3em;
+        height: 3em;
+      }
     </style>
   </head>
   <body>
     <form onSubmit="handleSubmitForm(event);">
-      <input type="text" required id="name" placeholder="Name"/>
+      <input type="text" required id="name" name="name" autocomplete="given-name" placeholder="Name"/>
       <button class="submit">Join</buton>
     </form>
     <div class="controller">
       <button id="up">⬆️</button>
       <button id="left">⬅️</button>
+      <img id="ghost" src="invertedghost.png"/>
       <button id="right">➡️</button>
       <button id="down">⬇️</button>
     </div>

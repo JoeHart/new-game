@@ -1,9 +1,11 @@
 const io = require("socket.io-client");
-// const socket = io("ws://192.168.0.184:3000");
+const host = process.env.HOST || "localhost";
+const port = process.env.PORT || 3000;
+const address = `ws://${host}:${port}`
 try {
 
-
-  const socket = io("ws://157.245.31.200/");
+  console.log("connecting to " + address);
+  const socket = io(address);
   const leftButton = document.getElementById("left");
   const rightButton = document.getElementById("right");
   const upButton = document.getElementById("up");
@@ -32,6 +34,10 @@ try {
     console.log("increment from server");
     console.log(display);
     display.innerHTML = num;
+  });
+
+  socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
   });
 
   leftButton.onclick = handleLeftButton;

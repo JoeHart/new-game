@@ -1,9 +1,10 @@
 var express = require("express");
 var app = express();
-var http = require("http").createServer(app);
 var path = require("path");
-var io = require("socket.io")(http);
 const asset_dir_path = "dist/";
+
+const port = process.env.PORT || 3000;
+
 app.use(function (req, res, next) {
   var filename = path.basename(req.url);
   var extension = path.extname(filename);
@@ -32,15 +33,18 @@ app.get("/", function (req, res) {
 
 
 
-app.listen(3000, function () {
-  console.log('Example app listening on port ' + 3000 + '!');
+const server = app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
 });
+
+var io = require("socket.io")(server, { origins: '*:*' });
+
 
 let number = 0;
 
 let unitySocket;
 
-// io.attach(3001);
+io.attach(server);
 // console.log("starting websockets on port 3001");
 io.on("connection", function (socket) {
   console.log("a user connected");

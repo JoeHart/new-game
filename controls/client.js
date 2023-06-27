@@ -2,8 +2,6 @@ const io = require("socket.io-client");
 const host = process.env.HOST || "play.joehart.fun";
 const port = process.env.PORT || 3000;
 const address = `wss://${host}:${port}`;
-const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-const { abs, min, max, round } = Math;
 
 function hslToRgb(h, s, l) {
   let r, g, b;
@@ -38,6 +36,7 @@ function getRandomColor() {
     return hex.length === 1 ? '0' + hex : hex;
   }).join('');
 }
+
 if (localStorage.getItem("color") == null) {
   localStorage.setItem("color", getRandomColor());
 }
@@ -54,7 +53,7 @@ try {
     e.preventDefault();
     console.log("submitting form");
     ghostDiv.style.backgroundColor = `${color}`;
-    socket.emit("spawn", { id: socket.id, name: e.target[0].value });
+    socket.emit("spawn", { id: socket.id, name: e.target[0].value, color: color });
     return false;
   };
 

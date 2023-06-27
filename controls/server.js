@@ -3,7 +3,7 @@ var app = express();
 var http = require("http").createServer(app);
 
 var io = require("socket.io")(http);
-app.use(express.static("dist"));
+app.use(express.static("/dist"));
 
 app.get("/", function (req, res) {
   console.log("sending client.html");

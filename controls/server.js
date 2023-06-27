@@ -1,5 +1,20 @@
-var io = require("socket.io")({
-  transports: ["websocket"]
+var express = require("express");
+var app = express();
+var http = require("http").createServer(app);
+
+var io = require("socket.io")(http);
+app.use(express.static("dist"));
+
+app.get("/", function (req, res) {
+  console.log("sending client.html");
+
+  res.sendFile(__dirname + "/dist/index.html");
+});
+
+
+
+app.listen(3000, function () {
+  console.log('Example app listening on port ' + 3000 + '!');
 });
 
 let number = 0;
@@ -7,7 +22,7 @@ let number = 0;
 let unitySocket;
 
 io.attach(8080);
-console.log("starting server on port 8080");
+console.log("starting websockets on port 8080");
 io.on("connection", function (socket) {
   console.log("a user connected");
   socket.on("disconnect", function (data) {

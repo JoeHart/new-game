@@ -1,15 +1,16 @@
-import io from "socket.io-client";
+const io = require("socket.io-client");
 // const socket = io("ws://192.168.0.184:3000");
 try {
 
 
-  const socket = io("ws://localhost:8080");
+  const socket = io("ws://134.209.21.218:8080");
   const leftButton = document.getElementById("left");
   const rightButton = document.getElementById("right");
   const upButton = document.getElementById("up");
   const downButton = document.getElementById("down");
 
   const handleLeftButton = () => {
+    console.log("left button clicked");
     socket.emit("left");
   };
   const handleRightButton = () => {

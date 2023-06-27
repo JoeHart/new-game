@@ -1,13 +1,11 @@
 const io = require("socket.io-client");
-const host = process.env.HOST || "157.245.31.200";
-const port = process.env.PORT || 80;
+const host = process.env.HOST || "play.joehart.fun";
+const port = process.env.PORT || 3000;
 const address = `wss://${host}:${port}`;
 try {
 
   console.log("connecting to " + address);
-  const socket = io(address, {
-    transports: ['websocket']
-  });
+  const socket = io();
   const leftButton = document.getElementById("left");
   const rightButton = document.getElementById("right");
   const upButton = document.getElementById("up");

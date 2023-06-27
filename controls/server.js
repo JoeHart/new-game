@@ -34,6 +34,9 @@ app.get("/", function (req, res) {
 
 
 
+const server = app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
+});
 
 var io = require("socket.io")(server, {
   origins: '*:*',
@@ -82,8 +85,4 @@ io.on("connection", function (socket) {
   socket.on("spawn", data => {
     console.log("SPAWN: ", data);
   });
-});
-
-const server = app.listen(port, function () {
-  console.log('Example app listening on port ' + port + '!');
 });

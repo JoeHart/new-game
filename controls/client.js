@@ -3,7 +3,7 @@ const io = require("socket.io-client");
 try {
 
 
-  const socket = io("ws://134.209.21.218:8080");
+  const socket = io("ws://157.245.31.200/:3001");
   const leftButton = document.getElementById("left");
   const rightButton = document.getElementById("right");
   const upButton = document.getElementById("up");

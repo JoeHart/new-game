@@ -40,8 +40,8 @@ let number = 0;
 
 let unitySocket;
 
-io.attach(8080);
-console.log("starting websockets on port 8080");
+io.attach(3001);
+console.log("starting websockets on port 3001");
 io.on("connection", function (socket) {
   console.log("a user connected");
   socket.on("disconnect", function (data) {

@@ -59,25 +59,21 @@ io.on("connection", function (socket) {
   socket.on("spawn", data => {
     io.to(unitySocket).emit("spawn", data);
   });
-  socket.on("left", function () {
+  socket.on("left", function ({ id }) {
     console.log("LEFT");
-    io.to(unitySocket).emit("left", { id: socket.id });
+    io.to(unitySocket).emit("left", { id });
   });
-  socket.on("right", function () {
+  socket.on("right", function ({ id }) {
     console.log("RIGHT");
-    io.to(unitySocket).emit("right", { id: socket.id });
+    io.to(unitySocket).emit("right", { id });
   });
-  socket.on("down", function () {
+  socket.on("down", function ({ id }) {
     console.log("DOWN");
-    io.to(unitySocket).emit("down", { id: socket.id });
+    io.to(unitySocket).emit("down", { id });
   });
-  socket.on("up", function () {
+  socket.on("up", function ({ id }) {
     console.log("UP");
-    io.to(unitySocket).emit("up", { id: socket.id });
-  });
-  socket.on("fire", function () {
-    console.log("FIRE");
-    io.to(unitySocket).emit("fire", { id: socket.id });
+    io.to(unitySocket).emit("up", { id });
   });
   socket.on("registerGame", function (data) {
     unitySocket = data.id;

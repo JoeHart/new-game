@@ -77,16 +77,16 @@ try {
 
   const handleLeftButton = () => {
     console.log("left button clicked");
-    socket.emit("left");
+    socket.emit("left", { id: playerId });
   };
   const handleRightButton = () => {
-    socket.emit("right");
+    socket.emit("right", { id: playerId });
   };
   const handleUpButton = () => {
-    socket.emit("up");
+    socket.emit("up", { id: playerId });
   };
   const handleDownButton = () => {
-    socket.emit("down");
+    socket.emit("down", { id: playerId });
   };
 
 

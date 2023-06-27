@@ -43,7 +43,13 @@ if (localStorage.getItem("color") == null) {
 
 const color = localStorage.getItem("color");
 const nameInput = document.getElementById("name");
+if (localStorage.getItem("playerId") == null) {
+  let uuid = self.crypto.randomUUID();
+  localStorage.setItem("playerId", uuid);
+}
+
 const name = localStorage.getItem("name");
+const playerId = localStorage.getItem("playerId")
 if (name) {
   nameInput.value = name;
 }
@@ -59,7 +65,7 @@ try {
     console.log("submitting form");
     localStorage.setItem("name", e.target[0].value);
     ghostDiv.style.backgroundColor = `${color}`;
-    socket.emit("spawn", { id: socket.id, name: e.target[0].value, color: color });
+    socket.emit("spawn", { id: playerId, name: e.target[0].value, color: color });
     return false;
   };
 

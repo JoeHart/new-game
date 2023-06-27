@@ -6,7 +6,7 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "start": "parcel build index.html && http-server dist",
-    "serve": "process.env.HOST=157.245.31.200 rm -rf .parcel-cache||true && parcel build index.html &&  node server.js",
+    "serve": "HOST=157.245.31.200 rm -rf .parcel-cache||true && parcel build index.html &&  node server.js",
     "serve-local": "rm -rf .parcel-cache||true && parcel build index.html &&  node server.js"
   },
   "dependencies": {

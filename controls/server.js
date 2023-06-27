@@ -48,15 +48,19 @@ let number = 0;
 
 let unitySocket;
 
+const playerIdToSocketIdMap = {}
+
 // io.attach(server);
 // console.log("starting websockets on port 3001");
 io.on("connection", function (socket) {
   console.log("a user connected");
   socket.on("disconnect", function (data) {
     console.log("user disconnected", socket.id);
+
     io.to(unitySocket).emit("destroy", { id: socket.id });
   });
   socket.on("spawn", data => {
+    playerIdToSocketIdMap[data.id] = socket.id;
     io.to(unitySocket).emit("spawn", data);
   });
   socket.on("left", function ({ id }) {

@@ -37,7 +37,7 @@ const server = app.listen(port, function () {
   console.log('Example app listening on port ' + port + '!');
 });
 
-var io = require("socket.io")(server, { origins: '*:*' });
+var io = require("socket.io")(server, { origins: '*:*', 'transports': ['websocket', 'polling'] });
 
 
 let number = 0;

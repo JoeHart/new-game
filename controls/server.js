@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var http = require("http").createServer(app);
-
+var path = require("path");
 var io = require("socket.io")(http);
 app.use(function (req, res, next) {
   var filename = path.basename(req.url);

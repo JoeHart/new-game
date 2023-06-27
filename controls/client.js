@@ -42,7 +42,11 @@ if (localStorage.getItem("color") == null) {
 }
 
 const color = localStorage.getItem("color");
-
+const nameInput = document.getElementById("name");
+const name = localStorage.getItem("name");
+if (name) {
+  nameInput.value = name;
+}
 
 try {
   const ghostDiv = document.getElementById("ghost");
@@ -51,7 +55,9 @@ try {
   const socket = io();
   const handleSubmitForm = (e) => {
     e.preventDefault();
+
     console.log("submitting form");
+    localStorage.setItem("name", e.target[0].value);
     ghostDiv.style.backgroundColor = `${color}`;
     socket.emit("spawn", { id: socket.id, name: e.target[0].value, color: color });
     return false;

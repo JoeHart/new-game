@@ -3,6 +3,7 @@ var app = express();
 var http = require("http").createServer(app);
 var path = require("path");
 var io = require("socket.io")(http);
+const asset_dir_path = "dist/";
 app.use(function (req, res, next) {
   var filename = path.basename(req.url);
   var extension = path.extname(filename);
@@ -10,7 +11,18 @@ app.use(function (req, res, next) {
     console.log("The file " + filename + " was requested.");
   next();
 });
-app.use(express.static(__dirname + "dist"));
+// app.use(express.static(__dirname + "/dist"));
+app.use(express.static(asset_dir_path, {
+  index: false,
+  setHeaders: (response, file_path, file_stats) => {
+    // This function is called when “serve-static” makes a response.
+    // Note that `file_path` is an absolute path.
+
+    // Logging work
+    const relative_path = path.join(asset_dir_path, path.relative(asset_dir_path, file_path));
+    console.info(`@${Date.now()}`, "GAVE\t\t", relative_path);
+  }
+}));
 
 app.get("/", function (req, res) {
   console.log("sending client.html");

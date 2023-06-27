@@ -16,32 +16,62 @@
         font: 32px Helvetica, Arial;
         height: 100%;
         touch-action: manipulation;
+        max-width: 500px;
+        padding: 1em;
+        margin: 0 auto;
       }
       button {
         font: 40px Helvetica, Arial;
-        width: 100%;
+        width: 3em;
+        height: 3em;
       }
       .buttonContainer {
         display: flex;
         flex-direction: row;
         height: 200px;
       }
+      input {
+        font: 40px Helvetica, Arial;
+        width: 100%;
+        height: 100px;
+        margin-bottom: 1em;
+      }
+
+      .controller {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: center;
+      }
+
+      #up {
+        grid-column: 2;
+      }
+
+      #left {
+        grid-column: 1;
+        grid-row: 2;
+      }
+      #right {
+        grid-column: 3;
+        grid-row: 2;
+      }
+      #down {
+        grid-column: 2;
+        grid-row: 3;
+      }
     </style>
   </head>
   <body>
-    <h1>New Game</h1>
-    <div class="buttonContainer">
-      <button id="up">Up</button>
-    </div>
-    <div class="buttonContainer">
-      <button id="left">Left</button>
-      <button id="right">Right</button>
-
+    <input type="text" id="name" placeholder="Name"/>
+    <div class="controller">
+      <button id="up">⬆️</button>
+      <button id="left">⬅️</button>
+      <button id="right">➡️</button>
+      <button id="down">⬇️</button>
     </div>
 
-    <div class="buttonContainer">
-      <button id="down">Down</button>
-    </div>
     <script type="module" src="client.js"></script>
   </body>
 </html>

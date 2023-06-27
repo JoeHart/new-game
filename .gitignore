@@ -42,7 +42,7 @@ node_modules/
 jspm_packages/
 
 .parcel-cache/
-
+/controls/.parcel-cache/
 # TypeScript v1 declaration files
 typings/
 
@@ -181,3 +181,4 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+controls/.parcel-cache/

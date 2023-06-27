@@ -36,7 +36,6 @@ try {
 
 
   socket.on("connect", () => {
-    socket.emit("spawn", { id: socket.id });
   });
 
   socket.on("increment", num => {

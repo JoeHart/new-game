@@ -38,6 +38,7 @@ const server = app.listen(port, function () {
 });
 
 var io = require("socket.io")(server, {
+  origins: '*:*',
   transports: ['websocket', 'polling']
 });
 

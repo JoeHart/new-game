@@ -3,7 +3,14 @@ var app = express();
 var http = require("http").createServer(app);
 
 var io = require("socket.io")(http);
-app.use(express.static("/dist"));
+app.use(function (req, res, next) {
+  var filename = path.basename(req.url);
+  var extension = path.extname(filename);
+  if (extension === '.js')
+    console.log("The file " + filename + " was requested.");
+  next();
+});
+app.use(express.static(__dirname + "dist"));
 
 app.get("/", function (req, res) {
   console.log("sending client.html");

@@ -5,7 +5,9 @@ const address = `ws://${host}:${port}`
 try {
 
   console.log("connecting to " + address);
-  const socket = io(address);
+  const socket = io(address, {
+    transports: ['websocket']
+  });
   const leftButton = document.getElementById("left");
   const rightButton = document.getElementById("right");
   const upButton = document.getElementById("up");

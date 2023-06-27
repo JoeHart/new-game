@@ -33,9 +33,7 @@ app.get("/", function (req, res) {
 
 
 
-const server = app.listen(port, function () {
-  console.log('Example app listening on port ' + port + '!');
-});
+
 
 var io = require("socket.io")(server, {
   origins: '*:*',
@@ -47,7 +45,7 @@ let number = 0;
 
 let unitySocket;
 
-io.attach(server);
+// io.attach(server);
 // console.log("starting websockets on port 3001");
 io.on("connection", function (socket) {
   console.log("a user connected");
@@ -84,4 +82,8 @@ io.on("connection", function (socket) {
   socket.on("spawn", data => {
     console.log("SPAWN: ", data);
   });
+});
+
+const server = app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
 });

@@ -73,7 +73,7 @@ io.on("connection", function (socket) {
     io.to(playerIdToSocketIdMap[id]).emit("die");
   });
 
-  socket.on("c", ({ id }) => {
+  socket.on("roomFull", ({ id }) => {
     console.log("ROOM FULL", id);
     io.to(playerIdToSocketIdMap[id]).emit("roomFull");
   })

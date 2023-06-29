@@ -73,9 +73,9 @@ io.on("connection", function (socket) {
     io.to(playerIdToSocketIdMap[id]).emit("die");
   });
 
-  socket.on("roomFull", ({ id }) => {
+  socket.on("c", ({ id }) => {
     console.log("ROOM FULL", id);
-    io.to(playerIdToSocketIdMap[id]).emit("die");
+    io.to(playerIdToSocketIdMap[id]).emit("roomFull");
   })
   socket.on("right", function ({ id }) {
     console.log("RIGHT");

@@ -88,7 +88,24 @@ try {
   const handleDownButton = () => {
     socket.emit("down", { id: playerId });
   };
-
+  document.addEventListener('keydown', function (event) {
+    switch (event.key) {
+      case "ArrowDown":
+        socket.emit("down", { id: playerId });
+        break;
+      case "ArrowUp":
+        socket.emit("up", { id: playerId });
+        break;
+      case "ArrowLeft":
+        socket.emit("left", { id: playerId });
+        break;
+      case "ArrowRight":
+        socket.emit("right", { id: playerId });
+        break;
+      default:
+        return; // Quit when this doesn't handle the key event.
+    }
+  });
 
   socket.on("connect", () => {
   });

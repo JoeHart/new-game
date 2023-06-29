@@ -72,6 +72,11 @@ io.on("connection", function (socket) {
     console.log(playerIdToSocketIdMap)
     io.to(playerIdToSocketIdMap[id]).emit("die");
   });
+
+  socket.on("roomFull", ({ id }) => {
+    console.log("ROOM FULL", id);
+    io.to(playerIdToSocketIdMap[id]).emit("die");
+  })
   socket.on("right", function ({ id }) {
     console.log("RIGHT");
     io.to(unitySocket).emit("right", { id });

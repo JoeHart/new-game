@@ -97,6 +97,10 @@ try {
     alert("You died!");
   });
 
+  socket.on("roomFull", () => {
+    alert("Room is full!");
+  });
+
   socket.on("increment", num => {
     console.log("increment from server");
     console.log(display);

@@ -93,6 +93,10 @@ try {
   socket.on("connect", () => {
   });
 
+  socket.on("die", () => {
+    alert("You died!");
+  });
+
   socket.on("increment", num => {
     console.log("increment from server");
     console.log(display);

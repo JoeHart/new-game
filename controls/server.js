@@ -70,7 +70,7 @@ io.on("connection", function (socket) {
   socket.on("die", function ({ id }) {
     console.log("DIE", id);
     console.log(playerIdToSocketIdMap)
-    io.to(unitySocket).emit("left", { id });
+    io.to(playerIdToSocketIdMap[id]).emit("die");
   });
   socket.on("right", function ({ id }) {
     console.log("RIGHT");

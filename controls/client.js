@@ -1,4 +1,7 @@
 const io = require("socket.io-client");
+var Filter = require('bad-words'),
+  filter = new Filter();
+
 const host = process.env.HOST || "play.joehart.fun";
 const port = process.env.PORT || 3000;
 const address = `wss://${host}:${port}`;
@@ -65,7 +68,7 @@ try {
     console.log("submitting form");
     localStorage.setItem("name", e.target[0].value);
     ghostDiv.style.backgroundColor = `${color}`;
-    socket.emit("spawn", { id: playerId, name: e.target[0].value, color: color });
+    socket.emit("spawn", { id: playerId, name: filter.clean(e.target[0].value), color: color });
     return false;
   };
 

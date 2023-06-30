@@ -111,7 +111,8 @@ try {
   });
 
   socket.on("die", () => {
-    alert("You died!");
+    // alert("You died!");
+    document.body.innerHTML = "<h1>You died!</h1>";
   });
 
   socket.on("roomFull", () => {
